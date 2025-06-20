@@ -84,12 +84,16 @@ def send_message(msg, debug=False):
     print(f"\n📤 Sending: '{msg}'")
     time.sleep(1.2)
 
-    if len(msg.strip().split()) == 1:
-        print("\n💥 DryTextException: One word? That's all you got?")
-        print("🏆 Achievement Unlocked: Elite Level Dry Texter")
-        print("Pro TIP: Try more than 1 word!")
-        log_attempt(msg, "DryTextException")
-        return
+    for keyword in achievements:
+        if keyword in msg.lower():
+            break
+    else:
+        if len(msg.strip().split()) == 1:
+            print("\n💥 DryTextException: One word? That's all you got?")
+            print("🏆 Achievement Unlocked: Elite Level Dry Texter")
+            print("Pro TIP: Try more than 1 word!")
+            log_attempt(msg, "DryTextException")
+            return
 
     if random.randint(1, 100) == 69:
         reply = "She replied ❤️"
